@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.rosalynbm.wannago.ui.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_placesListFragment"
+            app:destination="@id/placesListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/placesListFragment"
+        android:name="com.rosalynbm.wannago.ui.PlacesListFragment"
+        android:label="fragment_places_list_list"
+        tools:layout="@layout/fragment_places_list_list" >
+        <action
+            android:id="@+id/action_placesListFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.rosalynbm.wannago.ui.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <activity
+        android:id="@+id/holderActivity"
+        android:name="com.rosalynbm.wannago.ui.HolderActivity"
+        android:label="activity_holder"/>
+</navigation>
