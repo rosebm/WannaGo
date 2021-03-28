@@ -3,6 +3,8 @@ package com.rosalynbm.wannago.di.module
 import android.app.Application
 import android.content.SharedPreferences
 import com.rosalynbm.wannago.ui.LoginViewModel
+import com.rosalynbm.wannago.ui.MapViewModel
+import com.rosalynbm.wannago.ui.placelist.PlacesListViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -15,7 +17,15 @@ val viewModelModule = module {
     }
 
     viewModel {
-        LoginViewModel(get(), get(), get())
+        LoginViewModel(app = get(), context = get(), sharedPref = get())
+    }
+
+    single{
+        MapViewModel(app = get(), dataSource = get())
+    }
+
+    single {
+        PlacesListViewModel(application = get(), dataSource =  get())
     }
 
     single {

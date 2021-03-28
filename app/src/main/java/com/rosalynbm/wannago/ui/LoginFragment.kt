@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
@@ -113,6 +114,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
                     _viewModel.setUserAuthenticated(true)
 
                     val idpResponse = IdpResponse.fromResultIntent(data)
+
+                    navigatePlacesListFragment()
                     /*startActivity(
                         Intent(this, RemindersActivity::class.java)
                             .putExtra("my_token", idpResponse?.idpToken)
@@ -157,12 +160,9 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun navigatePlacesListFragment() {
-        //use the navigationCommand live data to navigate between the fragments
-       /* //ros  viewModel.navigationCommand.postValue(
-            NavigationCommand.To(
-                ReminderListFragmentDirections.toSaveReminder()
-            )
-        )*/
+        // Use the navigationCommand live data to navigate between the fragments
+        _viewModel.navigationCommand.postValue(
+        NavigationCommand.To(LoginFragmentDirections.toPlacesListFragment()))
     }
 
 }

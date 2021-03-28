@@ -11,16 +11,16 @@
         android:label="login_fragment"
         tools:layout="@layout/login_fragment" >
         <action
-            android:id="@+id/action_loginFragment_to_placesListFragment"
+            android:id="@+id/to_placesListFragment"
             app:destination="@id/placesListFragment" />
     </fragment>
     <fragment
         android:id="@+id/placesListFragment"
-        android:name="com.rosalynbm.wannago.ui.PlacesListFragment"
+        android:name="com.rosalynbm.wannago.ui.placelist.PlacesListFragment"
         android:label="fragment_places_list_list"
         tools:layout="@layout/fragment_places_list_list" >
         <action
-            android:id="@+id/action_placesListFragment_to_mapsFragment"
+            android:id="@+id/to_mapsFragment"
             app:destination="@id/mapsFragment" />
     </fragment>
     <fragment

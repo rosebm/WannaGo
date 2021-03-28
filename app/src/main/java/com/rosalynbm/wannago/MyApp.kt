@@ -1,6 +1,8 @@
 package com.rosalynbm.wannago
 
 import android.app.Application
+import com.rosalynbm.wannago.di.module.dataSourceModule
+import com.rosalynbm.wannago.di.module.repositoryModule
 import com.rosalynbm.wannago.di.module.viewModelModule
 import com.rosalynbm.wannago.util.NetworkMonitor
 import org.koin.android.ext.koin.androidContext
@@ -16,7 +18,7 @@ class MyApp : Application()  {
 
         startKoin {
             androidContext(this@MyApp)
-            modules(listOf(viewModelModule))
+            modules(listOf(viewModelModule, repositoryModule, dataSourceModule))
         }
     }
 }

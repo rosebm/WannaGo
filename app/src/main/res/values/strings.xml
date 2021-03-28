@@ -5,6 +5,17 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_holder">HolderActivity</string>
     <string name="auth_sign_in_cancelled">Sign In cancelled</string>
+
+
+    <!-- PLACES LIST -->
+    <string name="no_data">No Data</string>
+
+    <!-- MAPS -->
+    <string name="place_saved">Place Saved!</string>
+    <string name="settings">Settings</string>
+    <string name="err_select_location">Please select location</string>
+    <string name="location_required_error">Location services must be enabled to use the app</string>
+    <string name="permission_denied_explanation">You need to grant location permission in order to select the location.</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
@@ -13,8 +24,9 @@
     <string name="title_activity_my_app">MyApp</string>
 
 
-    <!--ERROR STRINGS-->
+    <!-- ERROR STRINGS -->
     <string name="invalid_authentication">Invalid Authentication</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="unknown_error">Something wrong happened, please try again</string>
+    <string name="add_new_place_button">Add new place button</string>
 </resources>
