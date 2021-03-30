@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.rosalynbm.wannago.ui.MapViewModel" />
+            type="com.rosalynbm.wannago.ui.map.MapViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:context=".ui.MapsFragment" />
+            tools:context=".ui.map.MapsFragment" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/mapSaveButton"

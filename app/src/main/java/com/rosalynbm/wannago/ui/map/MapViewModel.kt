@@ -1,4 +1,4 @@
-package com.rosalynbm.wannago.ui
+package com.rosalynbm.wannago.ui.map
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
@@ -7,13 +7,13 @@ import com.google.android.gms.maps.model.PointOfInterest
 import com.rosalynbm.wannago.R
 import com.rosalynbm.wannago.base.BaseViewModel
 import com.rosalynbm.wannago.base.NavigationCommand
-import com.rosalynbm.wannago.data.PlaceDataSource
-import com.rosalynbm.wannago.data.dto.PlaceDTO
-import com.rosalynbm.wannago.ui.placelist.PlaceItem
+import com.rosalynbm.wannago.data.PoiDataSource
+import com.rosalynbm.wannago.data.dto.PoiDTO
+import com.rosalynbm.wannago.ui.poilist.PoiItem
 import kotlinx.coroutines.launch
 
 class MapViewModel(val app: Application,
-                   private val dataSource: PlaceDataSource
+                   val dataSource: PoiDataSource
 ): BaseViewModel(app) {
 
     val placeLocationName = MutableLiveData<String>()
@@ -21,6 +21,7 @@ class MapViewModel(val app: Application,
     val selectedPOI = MutableLiveData<PointOfInterest>()
     val latitude = MutableLiveData<Double>()
     val longitude = MutableLiveData<Double>()
+    val placeId = MutableLiveData<String>()
 
     /**
      * Clear the live data objects to start fresh next time the view model gets called
@@ -31,9 +32,10 @@ class MapViewModel(val app: Application,
         selectedPOI.value = null
         latitude.value = null
         longitude.value = null
+        placeId.value = null
     }
 
-    fun validateAndSaveReminder(reminderData: PlaceItem) {
+    fun validateAndSaveReminder(reminderData: PoiItem) {
         if (validateEnteredData(reminderData)) {
             savePlace(reminderData)
         }
@@ -42,9 +44,9 @@ class MapViewModel(val app: Application,
     /**
      * Validate the entered data and show error to the user if there's any invalid data
      */
-    private fun validateEnteredData(placeItem: PlaceItem): Boolean {
+    private fun validateEnteredData(poiItem: PoiItem): Boolean {
 
-        if (placeItem.location.isNullOrEmpty()) {
+        if (poiItem.location.isNullOrEmpty()) {
             showSnackBarInt.value = R.string.err_select_location
             return false
         }
@@ -52,18 +54,20 @@ class MapViewModel(val app: Application,
     }
 
     /**
-     * Saves the place on local db
+     * Saves the place on local db, and
+     * returns to list screen
      */
-    private fun savePlace(placeItem: PlaceItem) {
+    private fun savePlace(poiItem: PoiItem) {
         showLoading.value = true
         viewModelScope.launch {
-            dataSource.savePlace(
-                PlaceDTO(
-                    placeItem.location,
-                    placeItem.description,
-                    placeItem.latitude,
-                    placeItem.longitude,
-                    placeItem.id
+            dataSource.savePoi(
+                PoiDTO(
+                    poiItem.location,
+                    poiItem.description,
+                    poiItem.latitude,
+                    poiItem.longitude,
+                    poiItem.placeId,
+                    poiItem.id
                 )
             )
             showLoading.value = false

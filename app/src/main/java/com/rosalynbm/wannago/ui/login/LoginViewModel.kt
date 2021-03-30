@@ -1,11 +1,10 @@
-package com.rosalynbm.wannago.ui
+package com.rosalynbm.wannago.ui.login
 
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -31,7 +30,7 @@ class LoginViewModel(app: Application,
     private val currentUser = MutableLiveData<FirebaseUser>()
     private val authenticationState = MutableLiveData<AuthenticationState>()
 
-    fun getCurrentUser(): LiveData<FirebaseUser> = currentUser
+    fun getCurrentUser(): LiveData<FirebaseUser> = currentUser //ros
     fun authenticationStateLiveData(): LiveData<AuthenticationState> = authenticationState
 
     enum class AuthenticationState {

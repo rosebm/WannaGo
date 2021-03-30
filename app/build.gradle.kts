@@ -129,8 +129,8 @@ dependencies {
     implementation(Dependencies.coroutine)
 
     //Koin
-    implementation(Dependencies.android)
-    implementation(Dependencies.viewModel)
+    implementation(Dependencies.koinAndroid)
+    implementation(Dependencies.koinViewModel)
 
     implementation(Dependencies.firebaseUi)
     // Maps & Geofencing
@@ -141,6 +141,8 @@ dependencies {
     //implementation(Dependencies.androidxFragmentTesting)
     //implementation(Dependencies.testCore)
     implementation(Dependencies.fragment)
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.retrofitConverterMoshi)
 
 
  /*   // Dependencies for local unit tests

@@ -1,6 +1,7 @@
 package com.rosalynbm.wannago.base
 
 import androidx.databinding.ViewDataBinding
+import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -10,7 +11,7 @@ class DataBindingViewHolder<T>(private val binding: ViewDataBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: T) {
-        //ros binding.setVariable(BR.item , item)
+        binding.setVariable(BR.item , item)
         binding.executePendingBindings()
     }
 }

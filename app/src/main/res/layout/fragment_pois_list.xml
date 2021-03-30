@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.rosalynbm.wannago.ui.placelist.PlacesListViewModel" />
+            type="com.rosalynbm.wannago.ui.poilist.PoisListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,14 +16,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/placesRecyclerView"
-            android:name="com.rosalynbm.wannago.PlacesListFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:liveData="@{viewModel.placesList}"
-            tools:context=".ui.placelist.PlacesListFragment"
-            tools:listitem="@layout/fragment_places_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:liveData="@{viewModel.poisList}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +36,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:drawableTopCompat="@drawable/ic_location_no_data" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fadeVisible="@{viewModel.showLoading.booleanValue()}"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/placesAddButton"

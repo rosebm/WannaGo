@@ -1,17 +1,13 @@
-package com.rosalynbm.wannago.ui
+package com.rosalynbm.wannago.ui.login
 
 import android.app.Activity
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
@@ -19,11 +15,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.rosalynbm.wannago.BuildConfig
 import com.rosalynbm.wannago.R
 import com.rosalynbm.wannago.base.BaseFragment
-import com.rosalynbm.wannago.base.BaseViewModel
 import com.rosalynbm.wannago.base.NavigationCommand
 import com.rosalynbm.wannago.util.Variables
 import kotlinx.android.synthetic.main.login_fragment.*
-import org.koin.android.ext.android.inject
 import timber.log.Timber
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,9 +41,6 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        // TODO: Use the ViewModel
 
         // init timber
         if (BuildConfig.DEBUG)
@@ -75,9 +66,7 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
         when (_viewModel.authenticationState()) {
             LoginViewModel.AuthenticationState.AUTHENTICATED -> {
                 Timber.d("User signed in")
-
-                //ros startReminderActivity()
-                //ros finish()
+                navigatePlacesListFragment()
             }
 
             LoginViewModel.AuthenticationState.UNAUTHENTICATED -> {
@@ -118,7 +107,7 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
                     navigatePlacesListFragment()
                     /*startActivity(
                         Intent(this, RemindersActivity::class.java)
-                            .putExtra("my_token", idpResponse?.idpToken)
+                            .putExtra("my_token", idpResponse?.idpToken) //ros TODO send between fragments
                     )
                     finish()*/
                 }
@@ -148,7 +137,6 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
         val userAuthenticated = _viewModel.isUserAuthenticated()
 
         if (userAuthenticated) {
-            //ros startReminderActivity()
             navigatePlacesListFragment()
         }
     }
@@ -162,7 +150,7 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     private fun navigatePlacesListFragment() {
         // Use the navigationCommand live data to navigate between the fragments
         _viewModel.navigationCommand.postValue(
-        NavigationCommand.To(LoginFragmentDirections.toPlacesListFragment()))
+        NavigationCommand.To(LoginFragmentDirections.toPoisListFragment()))
     }
 
 }

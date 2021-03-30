@@ -1,4 +1,4 @@
-package com.rosalynbm.wannago.ui
+package com.rosalynbm.wannago.ui.map
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -29,9 +29,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.rosalynbm.wannago.BuildConfig
 import com.rosalynbm.wannago.R
 import com.rosalynbm.wannago.base.BaseFragment
-import com.rosalynbm.wannago.base.NavigationCommand
 import com.rosalynbm.wannago.databinding.FragmentMapsBinding
-import com.rosalynbm.wannago.ui.placelist.PlaceItem
+import com.rosalynbm.wannago.ui.poilist.PoiItem
 import org.koin.android.ext.android.inject
 import java.util.*
 
@@ -192,6 +191,7 @@ class MapsFragment : BaseFragment(), View.OnClickListener {
             _viewModel.placeLocationName.value = poi.name
             _viewModel.latitude.value = poi.latLng.latitude
             _viewModel.longitude.value = poi.latLng.longitude
+            _viewModel.placeId.value = poi.placeId
         }
     }
 
@@ -208,13 +208,14 @@ class MapsFragment : BaseFragment(), View.OnClickListener {
         _viewModel.onClear()
     }
 
-    private fun createPlace(): PlaceItem {
+    private fun createPlace(): PoiItem {
         val location = _viewModel.placeLocationName.value
         val description = _viewModel.placeDescription.value
         val latitude = _viewModel.latitude.value
         val longitude = _viewModel.longitude.value
+        val placeId = _viewModel.placeId.value
 
-        return PlaceItem(location, description, latitude, longitude)
+        return PoiItem(location, description, latitude, longitude, placeId)
     }
 
 }
