@@ -5,7 +5,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_holder">HolderActivity</string>
     <string name="auth_sign_in_cancelled">Sign In cancelled</string>
-
+    <string name="selected_place" translatable="false">selectedPlace</string>
 
     <!-- PLACES LIST -->
     <string name="no_data">No Data</string>

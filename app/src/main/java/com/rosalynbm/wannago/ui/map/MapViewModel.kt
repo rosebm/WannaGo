@@ -8,8 +8,8 @@ import com.rosalynbm.wannago.R
 import com.rosalynbm.wannago.base.BaseViewModel
 import com.rosalynbm.wannago.base.NavigationCommand
 import com.rosalynbm.wannago.data.PoiDataSource
-import com.rosalynbm.wannago.data.dto.PoiDTO
-import com.rosalynbm.wannago.ui.poilist.PoiItem
+import com.rosalynbm.wannago.data.entity.Poi
+import com.rosalynbm.wannago.model.PoiItem
 import kotlinx.coroutines.launch
 
 class MapViewModel(val app: Application,
@@ -61,7 +61,7 @@ class MapViewModel(val app: Application,
         showLoading.value = true
         viewModelScope.launch {
             dataSource.savePoi(
-                PoiDTO(
+                Poi(
                     poiItem.location,
                     poiItem.description,
                     poiItem.latitude,

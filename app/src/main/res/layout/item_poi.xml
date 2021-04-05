@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.rosalynbm.wannago.ui.poilist.PoiItem" />
+            type="com.rosalynbm.wannago.model.PoiItem" />
     </data>
 
     <androidx.cardview.widget.CardView

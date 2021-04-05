@@ -1,4 +1,4 @@
-package com.rosalynbm.wannago.data.dto
+package com.rosalynbm.wannago.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity(tableName = "pois")
-class PoiDTO (
+class Poi (
     @ColumnInfo(name = "location") var location: String?,
     @ColumnInfo(name = "description") var description: String?,
     @ColumnInfo(name = "latitude") var latitude: Double?,

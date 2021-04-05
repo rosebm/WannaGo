@@ -3,9 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="place"
+            type="com.rosalynbm.wannago.model.Place" />
+
+        <import
+            type="com.rosalynbm.wannago.util.Utils" />
+
+        <variable
+            name="viewModel"
+            type="com.rosalynbm.wannago.ui.poilist.PoisListViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
 
         <ImageView
             android:id="@+id/image"
@@ -21,7 +36,74 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5"/>
+            app:layout_constraintGuide_percent="0.4"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/placeNameText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{place.name}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeGuideline"
+            tools:text="CVI.CHE 105"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/placeRatingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@(place.rating}"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeNameText"
+            tools:text="4.7"/>
+
+        <RatingBar
+            android:id="@+id/placeRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rating="@{place.rating}"
+            android:isIndicator="true"
+            android:progressTint="@color/colorAccent"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:transformPivotX="0dp"
+            android:transformPivotY="0dp"
+            app:layout_constraintStart_toEndOf="@+id/placeRatingText"
+            app:layout_constraintTop_toBottomOf="@+id/placeNameText"
+            tools:rating="4"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/placeTypeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeRatingText"
+            tools:text="Peruvian Restaurant"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/placeReviewsLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Reviews"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeTypeText"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/placeReviewsRecyclerview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:liveData="@{viewModel.reviewsList}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeReviewsLabel"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -1,8 +1,11 @@
 package com.rosalynbm.wannago.repository
 
-import com.rosalynbm.wannago.api.ApiHelper
+import com.rosalynbm.wannago.api.PlaceRemoteDataSource
+import com.rosalynbm.wannago.model.Place
 
-class PlacesRepository(private val apiHelper: ApiHelper) {
+class PlacesRepository(private val placeRemoteDataSource: PlaceRemoteDataSource) {
 
-    suspend fun getPlace() = apiHelper.getPlaces()
+    //If localDataSource is empty, call Remote one
+    suspend fun getPlace(placeId: String): Place? = placeRemoteDataSource.getPlaceById(placeId)
+
 }

@@ -1,18 +1,9 @@
 package com.rosalynbm.wannago.api
 
-import com.rosalynbm.wannago.model.Place
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.HttpException
-import retrofit2.Response
-import timber.log.Timber
-
-class PlacesRemoteDataSource: RetrofitService {
+class PlacesRemoteDataSource { //}: RetrofitService {
     val retrofitService = RetrofitFactory.makeRetrofitService()
 
-    override suspend fun getPlaces(): Response<List<Place>> {
+   /* override suspend fun getPlaces(): Response<List<Place>> {
         CoroutineScope(Dispatchers.IO).launch {
             val response = retrofitService.getPlaces()
             withContext(Dispatchers.Main) {
@@ -30,7 +21,7 @@ class PlacesRemoteDataSource: RetrofitService {
                 }
             }
         }
-    }
+    }*/
 
     /*  private val retrofitService: RetrofitService = buildApi()
 

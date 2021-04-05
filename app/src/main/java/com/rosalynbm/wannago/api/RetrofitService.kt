@@ -1,11 +1,17 @@
 package com.rosalynbm.wannago.api
 
-import com.rosalynbm.wannago.model.Place
+import com.rosalynbm.wannago.api.dto.JSONResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface RetrofitService {
 
-    @GET("place/details/json?")
-    suspend fun getPlaces(): Response<List<Place>>
+    @GET("details/json?fields=formatted_address,icon,name,types,photos,rating,reviews")
+    suspend fun getPlaceById(@Query("key")
+                            key: String,
+                          @Query("place_id")
+                          place_id: String
+    ): Response<JSONResponse>
+
 }

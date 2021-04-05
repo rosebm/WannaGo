@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.databinding.DataBindingUtil
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
@@ -16,6 +17,7 @@ import com.rosalynbm.wannago.BuildConfig
 import com.rosalynbm.wannago.R
 import com.rosalynbm.wannago.base.BaseFragment
 import com.rosalynbm.wannago.base.NavigationCommand
+import com.rosalynbm.wannago.databinding.FragmentPoisListBinding
 import com.rosalynbm.wannago.util.Variables
 import kotlinx.android.synthetic.main.login_fragment.*
 import timber.log.Timber
@@ -141,6 +143,7 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
+    //ros try use the one on baseFragment
     private inline fun View.snack(@StringRes messageRes: Int, length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
         val snack = Snackbar.make(this, messageRes, length)
         snack.f()

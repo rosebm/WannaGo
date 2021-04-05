@@ -30,7 +30,7 @@ import com.rosalynbm.wannago.BuildConfig
 import com.rosalynbm.wannago.R
 import com.rosalynbm.wannago.base.BaseFragment
 import com.rosalynbm.wannago.databinding.FragmentMapsBinding
-import com.rosalynbm.wannago.ui.poilist.PoiItem
+import com.rosalynbm.wannago.model.PoiItem
 import org.koin.android.ext.android.inject
 import java.util.*
 
@@ -215,7 +215,13 @@ class MapsFragment : BaseFragment(), View.OnClickListener {
         val longitude = _viewModel.longitude.value
         val placeId = _viewModel.placeId.value
 
-        return PoiItem(location, description, latitude, longitude, placeId)
+        return PoiItem(
+            location,
+            description,
+            latitude,
+            longitude,
+            placeId
+        )
     }
 
 }

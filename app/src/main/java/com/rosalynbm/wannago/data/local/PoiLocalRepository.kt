@@ -1,8 +1,8 @@
 package com.rosalynbm.wannago.data.local
 
 import com.rosalynbm.wannago.data.PoiDataSource
-import com.rosalynbm.wannago.data.dto.PoiDTO
-import com.rosalynbm.wannago.data.dto.Result
+import com.rosalynbm.wannago.data.entity.Poi
+import com.rosalynbm.wannago.data.entity.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -11,7 +11,7 @@ class PoiLocalRepository (private val poiDao: PoiDao,
                           private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : PoiDataSource {
 
-    override suspend fun getPois(): Result<List<PoiDTO>> = withContext(ioDispatcher) {
+    override suspend fun getPois(): Result<List<Poi>> = withContext(ioDispatcher) {
         try {
             Result.Success(poiDao.getPois())
         } catch (ex: Exception) {
@@ -19,11 +19,11 @@ class PoiLocalRepository (private val poiDao: PoiDao,
         }
     }
 
-    override suspend fun savePoi(poi: PoiDTO) = withContext(ioDispatcher) {
+    override suspend fun savePoi(poi: Poi) = withContext(ioDispatcher) {
         poiDao.savePoi(poi)
     }
 
-    override suspend fun getPoi(id: String): Result<PoiDTO>
+    override suspend fun getPoi(id: String): Result<Poi>
             = withContext(ioDispatcher) {
         try {
             val poi = poiDao.getPoiById(id)

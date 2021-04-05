@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.rosalynbm.wannago.R
 import com.rosalynbm.wannago.base.BaseFragment
 import com.rosalynbm.wannago.base.NavigationCommand
 import com.rosalynbm.wannago.databinding.FragmentPoisListBinding
+import com.rosalynbm.wannago.model.Place
 import com.rosalynbm.wannago.util.setup
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -55,10 +58,23 @@ class PoisListFragment : BaseFragment() {
                     PoisListFragmentDirections.toMapsFragment()))
     }
 
+    private fun navigateToPlaceFragment(place: Place) {
+        // Use the navigationCommand live data to navigate between the fragments
+        val action = PoisListFragmentDirections.toPlaceFragment(place)
+        _viewModel.navigationCommand.postValue(
+                NavigationCommand.To(action))
+    }
+
     private fun setupRecyclerView() {
         val adapter = PoisListAdapter { placeSelected ->
-            Timber.d("ROS poi selected: ${placeSelected.placeId}")
 
+            lifecycleScope.launch {
+                Timber.d("Poi selected: ${placeSelected.placeId}")
+                placeSelected.placeId?.let {
+                    val place = _viewModel.getPlaceDetails(it)
+                    navigateToPlaceFragment(place)
+                }
+            }
         }
 
         // Setup the recycler view using the extension function

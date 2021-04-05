@@ -22,6 +22,9 @@
         <action
             android:id="@+id/to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/to_placeFragment"
+            app:destination="@id/placeFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -32,4 +35,13 @@
         android:id="@+id/holderActivity"
         android:name="com.rosalynbm.wannago.ui.HolderActivity"
         android:label="activity_holder"/>
+    <fragment
+        android:id="@+id/placeFragment"
+        android:name="com.rosalynbm.wannago.ui.place.PlaceFragment"
+        android:label="PlaceFragment"
+        tools:layout="@layout/fragment_place">
+        <argument
+            android:name="selectedPlace"
+            app:argType="com.rosalynbm.wannago.model.Place"/>
+    </fragment>
 </navigation>

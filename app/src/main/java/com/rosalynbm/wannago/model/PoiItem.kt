@@ -1,4 +1,4 @@
-package com.rosalynbm.wannago.ui.poilist
+package com.rosalynbm.wannago.model
 
 import java.io.Serializable
 

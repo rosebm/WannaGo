@@ -2,7 +2,6 @@ package com.rosalynbm.wannago.di.module
 
 import android.app.Application
 import android.content.SharedPreferences
-import com.rosalynbm.wannago.ui.place.PlaceViewModel
 import com.rosalynbm.wannago.ui.login.LoginViewModel
 import com.rosalynbm.wannago.ui.map.MapViewModel
 import com.rosalynbm.wannago.ui.poilist.PoisListViewModel
@@ -26,11 +25,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        PoisListViewModel(application = get(), dataSource =  get())
-    }
-
-    viewModel {
-        PlaceViewModel(application = get())
+        PoisListViewModel(application = get(), dataSource =  get(), placesRepository = get())
     }
 
     single {

@@ -1,11 +1,11 @@
 package com.rosalynbm.wannago.data
 
-import com.rosalynbm.wannago.data.dto.PoiDTO
-import com.rosalynbm.wannago.data.dto.Result
+import com.rosalynbm.wannago.data.entity.Poi
+import com.rosalynbm.wannago.data.entity.Result
 
 interface PoiDataSource {
-    suspend fun getPois(): Result<List<PoiDTO>>
-    suspend fun savePoi(poi: PoiDTO)
-    suspend fun getPoi(id: String): Result<PoiDTO>
+    suspend fun getPois(): Result<List<Poi>>
+    suspend fun savePoi(poi: Poi)
+    suspend fun getPoi(id: String): Result<Poi>
     suspend fun deleteAllPois()
 }

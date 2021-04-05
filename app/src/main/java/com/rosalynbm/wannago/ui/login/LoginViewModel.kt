@@ -59,5 +59,4 @@ class LoginViewModel(app: Application,
 
     fun isUserAuthenticated() = sharedPref.getBoolean("user_authenticate_state", false)
 
-
 }

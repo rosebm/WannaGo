@@ -5,16 +5,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.rosalynbm.wannago.base.BaseViewModel
 import com.rosalynbm.wannago.data.PoiDataSource
-import com.rosalynbm.wannago.data.dto.PoiDTO
-import com.rosalynbm.wannago.data.dto.Result
+import com.rosalynbm.wannago.data.entity.Poi
+import com.rosalynbm.wannago.data.entity.Result
+import com.rosalynbm.wannago.model.Place
+import com.rosalynbm.wannago.model.PoiItem
+import com.rosalynbm.wannago.model.Review
+import com.rosalynbm.wannago.repository.PlacesRepository
 import kotlinx.coroutines.launch
 
 class PoisListViewModel(application: Application,
-                        private val dataSource: PoiDataSource
+                        private val dataSource: PoiDataSource,
+                        private val placesRepository: PlacesRepository
 ): BaseViewModel(application) {
 
     // list that holds the place data to be displayed on the UI
     val poisList = MutableLiveData<List<PoiItem>>()
+    val reviewsList = MutableLiveData<List<Review>>()
 
     /**
      * Get all the reminders from the DataSource and add them to the remindersList to be shown on the UI,
@@ -29,7 +35,7 @@ class PoisListViewModel(application: Application,
             when (result) {
                 is Result.Success<*> -> {
                     val dataList = ArrayList<PoiItem>()
-                    dataList.addAll((result.data as List<PoiDTO>).map { poi ->
+                    dataList.addAll((result.data as List<Poi>).map { poi ->
                         //map the place data from the DB to the be ready to be displayed on the UI
                         PoiItem(
                             poi.location,
@@ -56,5 +62,17 @@ class PoisListViewModel(application: Application,
      */
     private fun invalidateShowNoData() {
         showNoData.value = poisList.value == null || poisList.value!!.isEmpty()
+    }
+
+    suspend fun getPlaceDetails(placeId: String): Place {
+        return placesRepository.getPlace(placeId) ?: Place()
+    }
+
+    fun getPhotoUrl(placeRef: String): String {
+        return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1800&photoreference=" + placeRef + "&key=AIzaSyCZvIpJYq2dgv3QohyvXLeiQMSHfIltgDk"
+    }
+
+    fun loadReviews(list: List<Review>) {
+        reviewsList.value = list
     }
 }
