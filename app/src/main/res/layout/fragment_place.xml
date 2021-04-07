@@ -6,14 +6,14 @@
     <data>
         <variable
             name="place"
-            type="com.rosalynbm.wannago.model.Place" />
+            type="com.rosalynbm.wannago2.model.Place" />
 
         <import
-            type="com.rosalynbm.wannago.util.Utils" />
+            type="com.rosalynbm.wannago2.util.Utils" />
 
         <variable
             name="viewModel"
-            type="com.rosalynbm.wannago.ui.poilist.PoisListViewModel" />
+            type="com.rosalynbm.wannago2.ui.poilist.PoisListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

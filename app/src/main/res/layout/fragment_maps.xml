@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.rosalynbm.wannago.ui.map.MapViewModel" />
+            type="com.rosalynbm.wannago2.ui.map.MapViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

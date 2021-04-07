@@ -5,7 +5,7 @@
     <data>
         <variable
             name="review"
-            type="com.rosalynbm.wannago.model.Review" />
+            type="com.rosalynbm.wannago2.model.Review" />
     </data>
 
     <androidx.cardview.widget.CardView

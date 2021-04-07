@@ -97,3 +97,5 @@ app/release/output.json
 
 signing/
 global.properties
+
+app/src/main/java/com/rosalynbm/wannago2/util/Constants.kt

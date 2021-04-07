@@ -40,7 +40,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.rosalynbm.wannago"
+        applicationId = "com.rosalynbm.wannago2"
         minSdkVersion(AppConfig.minSdk)
         targetSdkVersion(AppConfig.targetSdk)
         versionCode = AppConfig.versionCode
@@ -62,9 +62,6 @@ android {
                     "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("release")
-        }
-        getByName("debug") {
-            signingConfig = signingConfigs.getByName("debug")
         }
     }
 

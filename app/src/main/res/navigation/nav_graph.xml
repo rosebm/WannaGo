@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.rosalynbm.wannago.ui.login.LoginFragment"
+        android:name="com.rosalynbm.wannago2.ui.login.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/poisListFragment"
-        android:name="com.rosalynbm.wannago.ui.poilist.PoisListFragment"
+        android:name="com.rosalynbm.wannago2.ui.poilist.PoisListFragment"
         android:label="fragment_pois_list_list"
         tools:layout="@layout/fragment_pois_list" >
         <action
@@ -28,20 +28,20 @@
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.rosalynbm.wannago.ui.map.MapsFragment"
+        android:name="com.rosalynbm.wannago2.ui.map.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
     <activity
         android:id="@+id/holderActivity"
-        android:name="com.rosalynbm.wannago.ui.HolderActivity"
+        android:name="com.rosalynbm.wannago2.ui.HolderActivity"
         android:label="activity_holder"/>
     <fragment
         android:id="@+id/placeFragment"
-        android:name="com.rosalynbm.wannago.ui.place.PlaceFragment"
+        android:name="com.rosalynbm.wannago2.ui.place.PlaceFragment"
         android:label="PlaceFragment"
         tools:layout="@layout/fragment_place">
         <argument
             android:name="selectedPlace"
-            app:argType="com.rosalynbm.wannago.model.Place"/>
+            app:argType="com.rosalynbm.wannago2.model.Place"/>
     </fragment>
 </navigation>
