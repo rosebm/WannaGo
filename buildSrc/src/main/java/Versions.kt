@@ -6,7 +6,7 @@ object Versions {
     // App dependencies
     const val androidX = "1.0.0"
     const val androidXAnnotations = "1.0.1"
-    const val androidxConstraint = "2.0.0-rc1"
+    const val androidxConstraint = "2.1.0-beta01"
     const val androidXLegacySupport = "1.0.0"
     const val androidXNavigation = "2.2.0"
     const val appCompat = "1.2.0"

@@ -1,4 +1,4 @@
-package com.rosalynbm.wannago2.data.entity
+package com.rosalynbm.wannago2.data
 
 /**
  * A sealed class that encapsulates successful outcome with a value of type [T]

@@ -6,6 +6,7 @@
     <string name="title_activity_holder">HolderActivity</string>
     <string name="auth_sign_in_cancelled">Sign In cancelled</string>
     <string name="selected_place" translatable="false">selectedPlace</string>
+    <string name="logout">Logout</string>
 
     <!-- PLACES LIST -->
     <string name="no_data">No Data</string>
@@ -19,9 +20,10 @@
 
     <!-- ERROR STRINGS -->
     <string name="invalid_authentication">Invalid Authentication</string>
-    <string name="no_internet_connection">No internet connection</string>
+    <string name="no_internet_connection">No internet connection. Please try again</string>
     <string name="unknown_error">Something wrong happened, please try again</string>
     <string name="add_new_place_button">Add new place button</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reviews">Reviews</string>
 </resources>

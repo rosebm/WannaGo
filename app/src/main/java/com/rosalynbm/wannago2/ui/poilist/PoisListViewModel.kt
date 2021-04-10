@@ -4,18 +4,18 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.rosalynbm.wannago2.base.BaseViewModel
-import com.rosalynbm.wannago2.data.PoiDataSource
-import com.rosalynbm.wannago2.data.entity.Poi
-import com.rosalynbm.wannago2.data.entity.Result
+import com.rosalynbm.wannago2.data.entity.PoiEntity
+import com.rosalynbm.wannago2.data.Result
 import com.rosalynbm.wannago2.model.Place
 import com.rosalynbm.wannago2.model.PoiItem
 import com.rosalynbm.wannago2.model.Review
 import com.rosalynbm.wannago2.repository.PlacesRepository
+import com.rosalynbm.wannago2.repository.PoiRepository
 import com.rosalynbm.wannago2.util.Constants
 import kotlinx.coroutines.launch
 
 class PoisListViewModel(application: Application,
-                        private val dataSource: PoiDataSource,
+                        private val poiRepository: PoiRepository,
                         private val placesRepository: PlacesRepository
 ): BaseViewModel(application) {
 
@@ -24,19 +24,19 @@ class PoisListViewModel(application: Application,
     val reviewsList = MutableLiveData<List<Review>>()
 
     /**
-     * Get all the reminders from the DataSource and add them to the remindersList to be shown on the UI,
-     * or show error if any
+     * Get all the reminders from the DataSource and add them to the
+     * remindersList to be shown on the UI, or show error if any
      */
     fun loadPlaces() {
         showLoading.value = true
         viewModelScope.launch {
             //interacting with the dataSource has to be through a coroutine
-            val result = dataSource.getPois()
+            val result = poiRepository.getPois()
             showLoading.postValue(false)
             when (result) {
                 is Result.Success<*> -> {
                     val dataList = ArrayList<PoiItem>()
-                    dataList.addAll((result.data as List<Poi>).map { poi ->
+                    dataList.addAll((result.data as List<PoiEntity>).map { poi ->
                         //map the place data from the DB to the be ready to be displayed on the UI
                         PoiItem(
                             poi.location,
@@ -65,8 +65,8 @@ class PoisListViewModel(application: Application,
         showNoData.value = poisList.value == null || poisList.value!!.isEmpty()
     }
 
-    suspend fun getPlaceDetails(placeId: String): Place {
-        return placesRepository.getPlace(placeId) ?: Place()
+    suspend fun getPlaceDetails(placeId: String): Place? {
+        return placesRepository.getPlace(placeId)
     }
 
     fun getPhotoUrl(placeRef: String): String {
@@ -75,6 +75,8 @@ class PoisListViewModel(application: Application,
     }
 
     fun loadReviews(list: List<Review>) {
-        reviewsList.value = list
+        reviewsList.postValue(list)
+        invalidateShowNoData()
     }
+
 }

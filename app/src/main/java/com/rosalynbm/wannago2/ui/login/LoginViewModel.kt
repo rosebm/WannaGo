@@ -30,7 +30,7 @@ class LoginViewModel(app: Application,
     private val currentUser = MutableLiveData<FirebaseUser>()
     private val authenticationState = MutableLiveData<AuthenticationState>()
 
-    fun getCurrentUser(): LiveData<FirebaseUser> = currentUser //ros
+    fun getCurrentUser(): LiveData<FirebaseUser> = currentUser
     fun authenticationStateLiveData(): LiveData<AuthenticationState> = authenticationState
 
     enum class AuthenticationState {
@@ -58,5 +58,9 @@ class LoginViewModel(app: Application,
     }
 
     fun isUserAuthenticated() = sharedPref.getBoolean("user_authenticate_state", false)
+
+    fun showSnackBar(message: String) {
+        showSnackBar.value = message
+    }
 
 }

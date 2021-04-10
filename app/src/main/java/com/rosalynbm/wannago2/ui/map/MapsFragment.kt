@@ -68,14 +68,16 @@ class MapsFragment : BaseFragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maps, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maps,
+            container, false)
         binding.viewModel = _viewModel
         binding.lifecycleOwner = this
 
         binding.mapSaveButton.setOnClickListener(this)
 
         initSupportMapFragment()
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
 
         return binding.root
     }
@@ -112,7 +114,9 @@ class MapsFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
+    {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == PERMISSION_ID) {
@@ -120,8 +124,8 @@ class MapsFragment : BaseFragment(), View.OnClickListener {
                 grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 enableMyLocation()
             } else {
-                // Display a snackbar explaining that the user needs location permissions in order to
-                // trigger the reminders
+                // Display a snackbar explaining that the user needs location
+                // permissions in order to trigger the reminders
                 Snackbar.make(
                     binding.root,
                     R.string.permission_denied_explanation,
@@ -130,7 +134,8 @@ class MapsFragment : BaseFragment(), View.OnClickListener {
                     .setAction(R.string.settings) {
                         startActivity(Intent().apply {
                             action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                            data = Uri.fromParts("package", BuildConfig.APPLICATION_ID, null)
+                            data = Uri.fromParts("package",
+                                    BuildConfig.APPLICATION_ID, null)
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK
                         })
                     }.show()
@@ -159,9 +164,11 @@ class MapsFragment : BaseFragment(), View.OnClickListener {
 
                         map?.let {
                             it.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, ZOOM_LEVEL))
-                            it.addMarker(MarkerOptions().position(latLng).title("Marker in user's last location"))
+                            it.addMarker(MarkerOptions().position(latLng)
+                                .title("Marker in user's last location"))
                         }
-                        Toast.makeText(requireContext(), "Please select a location", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(),
+                            "Please select a location", Toast.LENGTH_LONG).show()
                     }
                 }
         }

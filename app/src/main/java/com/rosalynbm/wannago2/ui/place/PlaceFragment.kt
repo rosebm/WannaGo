@@ -24,7 +24,15 @@ class PlaceFragment : BaseFragment() {
     ): View? {
 
         binding = FragmentPlaceBinding.inflate(inflater)
+        binding.viewModel = _viewModel
         binding.lifecycleOwner = this
+        setupRecyclerView()
+
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         place = arguments?.let { PlaceFragmentArgs.fromBundle(it).selectedPlace }
 
@@ -42,8 +50,10 @@ class PlaceFragment : BaseFragment() {
 
             place.photos?.let { list ->
                 val reference = list[0].photo_reference
-                val photoUrl = _viewModel.getPhotoUrl(reference)
-                bindImageViewToName(binding.image, photoUrl)
+                val photoUrl = reference?.let { _viewModel.getPhotoUrl(it) }
+                if (photoUrl != null) {
+                    bindImageViewToName(binding.image, photoUrl)
+                }
             }
 
             place.reviews?.let {
@@ -51,14 +61,6 @@ class PlaceFragment : BaseFragment() {
             }
 
         }
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setupRecyclerView()
     }
 
     private fun setupRecyclerView() {

@@ -12,4 +12,4 @@ data class PoiItem (
     var longitude: Double?,
     var placeId: String?,
     val id: String = java.util.UUID.randomUUID().toString()
-    ) : Serializable
+) : Serializable

@@ -7,26 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.StringRes
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
-import com.google.android.material.snackbar.Snackbar
 import com.rosalynbm.wannago2.BuildConfig
 import com.rosalynbm.wannago2.R
 import com.rosalynbm.wannago2.base.BaseFragment
 import com.rosalynbm.wannago2.base.NavigationCommand
-import com.rosalynbm.wannago2.databinding.FragmentPoisListBinding
 import com.rosalynbm.wannago2.util.Variables
 import kotlinx.android.synthetic.main.login_fragment.*
+import kotlinx.coroutines.*
 import timber.log.Timber
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment(), View.OnClickListener {
 
     companion object {
-        fun newInstance() = LoginFragment()
-        // Arbitrary request code to identify the request when the result is returned in onActivityResult
+        // Arbitrary request code to identify the request when the result
+        // is returned in onActivityResult
         private val SIGN_IN_REQUEST_CODE = 2021
     }
 
@@ -49,6 +47,19 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
 
         loginButton.setOnClickListener(this)
         observeAuthenticationState()
+    }
+
+   override fun onResume() {
+        super.onResume()
+
+        GlobalScope.launch (Dispatchers.IO) {
+            delay(1000)
+            withContext(Dispatchers.Main) {
+                login_motion_layout?.let {
+                    it.transitionToEnd()
+                }
+            }
+        }
     }
 
     override fun onClick(view: View?) {
@@ -94,7 +105,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
         data: Intent?
     ) {
         super.onActivityResult(requestCode, resultCode, data)
-        // SIGN_IN_REQUEST_CODE is the request code passed into startActivityForResult(...) when starting the sign in flow.
+        // SIGN_IN_REQUEST_CODE is the request code passed into
+        // startActivityForResult(...) when starting the sign in flow.
         if (requestCode == SIGN_IN_REQUEST_CODE) {
             val response = IdpResponse.fromResultIntent(data)
 
@@ -102,15 +114,8 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
             when(resultCode) {
                 Activity.RESULT_OK -> {
                     _viewModel.setUserAuthenticated(true)
-
                     val idpResponse = IdpResponse.fromResultIntent(data)
-
                     navigatePlacesListFragment()
-                    /*startActivity(
-                        Intent(this, RemindersActivity::class.java)
-                            .putExtra("my_token", idpResponse?.idpToken) //ros TODO send between fragments
-                    )
-                    finish()*/
                 }
 
                 else -> {
@@ -118,14 +123,14 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
                     // Sign in failed
                     if (response == null) {
                         // User pressed back button
-                        loginButton.snack(R.string.auth_sign_in_cancelled, Snackbar.LENGTH_LONG,{})
+                        _viewModel.showSnackBar(getString(R.string.auth_sign_in_cancelled))
                         return
                     }
                     if (response.error?.errorCode == ErrorCodes.NO_NETWORK) {
-                        loginButton.snack(R.string.no_internet_connection, Snackbar.LENGTH_LONG,{})
+                        _viewModel.showSnackBar(getString(R.string.no_internet_connection))
                         return
                     } else {
-                        loginButton.snack(R.string.unknown_error, Snackbar.LENGTH_LONG,{})
+                        _viewModel.showSnackBar(getString(R.string.unknown_error))
                     }
                     Timber.e("Sign-in error: ${response.error}")
                 }
@@ -140,13 +145,6 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
         if (userAuthenticated) {
             navigatePlacesListFragment()
         }
-    }
-
-    //ros try use the one on baseFragment
-    private inline fun View.snack(@StringRes messageRes: Int, length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
-        val snack = Snackbar.make(this, messageRes, length)
-        snack.f()
-        snack.show()
     }
 
     private fun navigatePlacesListFragment() {

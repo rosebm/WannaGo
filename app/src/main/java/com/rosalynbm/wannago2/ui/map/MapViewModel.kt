@@ -7,21 +7,21 @@ import com.google.android.gms.maps.model.PointOfInterest
 import com.rosalynbm.wannago2.R
 import com.rosalynbm.wannago2.base.BaseViewModel
 import com.rosalynbm.wannago2.base.NavigationCommand
-import com.rosalynbm.wannago2.data.PoiDataSource
-import com.rosalynbm.wannago2.data.entity.Poi
+import com.rosalynbm.wannago2.data.entity.PoiEntity
 import com.rosalynbm.wannago2.model.PoiItem
+import com.rosalynbm.wannago2.repository.PoiRepository
 import kotlinx.coroutines.launch
 
 class MapViewModel(val app: Application,
-                   val dataSource: PoiDataSource
+                   val poiRepository: PoiRepository
 ): BaseViewModel(app) {
 
-    val placeLocationName = MutableLiveData<String>()
-    val placeDescription = MutableLiveData<String>()
-    val selectedPOI = MutableLiveData<PointOfInterest>()
-    val latitude = MutableLiveData<Double>()
-    val longitude = MutableLiveData<Double>()
-    val placeId = MutableLiveData<String>()
+    val placeLocationName = MutableLiveData<String?>()
+    val placeDescription = MutableLiveData<String?>()
+    val selectedPOI = MutableLiveData<PointOfInterest?>()
+    val latitude = MutableLiveData<Double?>()
+    val longitude = MutableLiveData<Double?>()
+    val placeId = MutableLiveData<String?>()
 
     /**
      * Clear the live data objects to start fresh next time the view model gets called
@@ -60,8 +60,8 @@ class MapViewModel(val app: Application,
     private fun savePlace(poiItem: PoiItem) {
         showLoading.value = true
         viewModelScope.launch {
-            dataSource.savePoi(
-                Poi(
+            poiRepository.savePoi(
+                PoiEntity(
                     poiItem.location,
                     poiItem.description,
                     poiItem.latitude,

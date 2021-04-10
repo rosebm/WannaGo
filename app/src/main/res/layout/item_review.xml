@@ -8,12 +8,12 @@
             type="com.rosalynbm.wannago2.model.Review" />
     </data>
 
-    <androidx.cardview.widget.CardView
+  <!--  <androidx.cardview.widget.CardView
         android:id="@+id/reviewCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_medium"
-        android:fadeVisible="@{true}">
+        android:fadeVisible="@{true}">-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,6 +24,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{review.author_name}"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Joe Doe"/>
@@ -33,10 +34,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{review.text}"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reviewNameText"
                 tools:text="Nice restaurant"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+ <!--   </androidx.cardview.widget.CardView>-->
 </layout>

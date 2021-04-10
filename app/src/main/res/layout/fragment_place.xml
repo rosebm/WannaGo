@@ -89,7 +89,7 @@
             android:id="@+id/placeReviewsLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Reviews"
+            android:text="@string/reviews"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/placeTypeText"/>
@@ -100,6 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:liveData="@{viewModel.reviewsList}"
+            android:scrollbars="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/placeReviewsLabel"/>

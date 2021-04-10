@@ -25,6 +25,9 @@
         <action
             android:id="@+id/to_placeFragment"
             app:destination="@id/placeFragment" />
+        <action
+            android:id="@+id/action_poisListFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -32,7 +35,7 @@
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
     <activity
-        android:id="@+id/holderActivity"
+        android:id="@+id/toLogin"
         android:name="com.rosalynbm.wannago2.ui.HolderActivity"
         android:label="activity_holder"/>
     <fragment

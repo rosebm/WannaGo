@@ -13,7 +13,8 @@ import org.koin.dsl.module
 val viewModelModule = module {
 
     fun getSharedPrefs(androidApplication: Application): SharedPreferences {
-        return  androidApplication.getSharedPreferences("WannaGoReminder",  android.content.Context.MODE_PRIVATE)
+        return  androidApplication.
+        getSharedPreferences("WannaGoReminder",  android.content.Context.MODE_PRIVATE)
     }
 
     viewModel {
@@ -21,11 +22,11 @@ val viewModelModule = module {
     }
 
     viewModel{
-        MapViewModel(app = get(), dataSource = get())
+        MapViewModel(app = get(), poiRepository = get())
     }
 
     viewModel {
-        PoisListViewModel(application = get(), dataSource =  get(), placesRepository = get())
+        PoisListViewModel(application = get(), poiRepository = get(), placesRepository = get())
     }
 
     single {
