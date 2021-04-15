@@ -40,7 +40,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.rosalynbm.wannago"
+        applicationId = "com.rosalynbm.wannago2"
         minSdkVersion(AppConfig.minSdk)
         targetSdkVersion(AppConfig.targetSdk)
         versionCode = AppConfig.versionCode
@@ -48,6 +48,10 @@ android {
 
         testInstrumentationRunner = AppConfig.androidTestInstrumentation
         resConfigs("en") //To limit the languages available from Firebase translations
+
+        javaCompileOptions.annotationProcessorOptions {
+            arguments["room.incremental"] = "true"
+        }
     }
 
     buildTypes {
@@ -57,6 +61,7 @@ android {
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
@@ -76,6 +81,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -89,6 +97,7 @@ dependencies {
     implementation(Dependencies.appCompact)
     implementation(Dependencies.legacySupport)
     implementation(Dependencies.annotations)
+    implementation(Dependencies.coil)
 
     //implementation(Dependencies.cardView)
     implementation(Dependencies.material)
@@ -125,8 +134,8 @@ dependencies {
     implementation(Dependencies.coroutine)
 
     //Koin
-    implementation(Dependencies.android)
-    implementation(Dependencies.viewModel)
+    implementation(Dependencies.koinAndroid)
+    implementation(Dependencies.koinViewModel)
 
     implementation(Dependencies.firebaseUi)
     // Maps & Geofencing
@@ -137,6 +146,9 @@ dependencies {
     //implementation(Dependencies.androidxFragmentTesting)
     //implementation(Dependencies.testCore)
     implementation(Dependencies.fragment)
+    implementation(Dependencies.okhttpInterceptor)
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.retrofitConverterMoshi)
 
 
  /*   // Dependencies for local unit tests

@@ -7,29 +7,47 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.rosalynbm.wannago.ui.LoginFragment"
+        android:name="com.rosalynbm.wannago2.ui.login.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment" >
         <action
-            android:id="@+id/action_loginFragment_to_placesListFragment"
-            app:destination="@id/placesListFragment" />
+            android:id="@+id/to_poisListFragment"
+            app:destination="@id/poisListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/placesListFragment"
-        android:name="com.rosalynbm.wannago.ui.PlacesListFragment"
-        android:label="fragment_places_list_list"
-        tools:layout="@layout/fragment_places_list_list" >
+        android:id="@+id/poisListFragment"
+        android:name="com.rosalynbm.wannago2.ui.poilist.PoisListFragment"
+        android:label="fragment_pois_list_list"
+        tools:layout="@layout/fragment_pois_list" >
         <action
-            android:id="@+id/action_placesListFragment_to_mapsFragment"
+            android:id="@+id/to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/to_placeFragment"
+            app:destination="@id/placeFragment" />
+        <action
+            android:id="@+id/action_poisListFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.rosalynbm.wannago.ui.MapsFragment"
+        android:name="com.rosalynbm.wannago2.ui.map.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
     <activity
-        android:id="@+id/holderActivity"
-        android:name="com.rosalynbm.wannago.ui.HolderActivity"
+        android:id="@+id/toLogin"
+        android:name="com.rosalynbm.wannago2.ui.HolderActivity"
         android:label="activity_holder"/>
+    <fragment
+        android:id="@+id/placeFragment"
+        android:name="com.rosalynbm.wannago2.ui.place.PlaceFragment"
+        android:label="PlaceFragment"
+        tools:layout="@layout/fragment_place">
+        <argument
+            android:name="placeId"
+            app:argType="string"/>
+        <!--<argument
+            android:name="selectedPlace"
+            app:argType="com.rosalynbm.wannago2.model.Place"/>-->
+    </fragment>
 </navigation>

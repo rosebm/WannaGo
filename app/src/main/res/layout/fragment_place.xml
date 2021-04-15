@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="place"
+            type="com.rosalynbm.wannago2.model.Place" />
+
+        <import
+            type="com.rosalynbm.wannago2.util.Utils" />
+
+        <variable
+            name="viewModel"
+            type="com.rosalynbm.wannago2.ui.place.PlaceViewModel" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/placeDetailsMotionLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layoutDescription="@xml/fragment_place_scene">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/placeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/placeGuideline"/>
+
+       <!-- <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerMain"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/placeGuideline"/>-->
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/placeGuideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/placeNameText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{place.name}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeGuideline"
+            tools:text="CVI.CHE 105"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/placeRatingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{place.rating.toString()}"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeNameText"
+            tools:text="4.7"/>
+
+        <RatingBar
+            android:id="@+id/placeRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rating="@{place.rating}"
+            android:isIndicator="true"
+            android:progressTint="@color/colorAccent"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:transformPivotX="0dp"
+            android:transformPivotY="0dp"
+            app:layout_constraintStart_toEndOf="@+id/placeRatingText"
+            app:layout_constraintTop_toBottomOf="@+id/placeNameText"
+            tools:rating="4"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/placeTypeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeRatingText"
+            tools:text="Peruvian Restaurant"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/placeAddressText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{place.formatted_address}"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeTypeText"
+            tools:text="105 NE 3rd Ave, Miami, FL 33132, USA"/>
+
+       <!-- <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/placeReviewsLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/reviews"
+            android:visibility="gone"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeAddressText"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/placeReviewsRecyclerview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:liveData="@{viewModel.reviewsList}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeReviewsLabel"/>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+</layout>
