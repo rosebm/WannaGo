@@ -94,5 +94,5 @@ lint/tmp/
 app/release/output.json
 .idea/codeStyles/
 
-signing/
+#signing/
 global.properties
