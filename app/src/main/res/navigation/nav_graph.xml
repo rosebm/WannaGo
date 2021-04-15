@@ -44,7 +44,10 @@
         android:label="PlaceFragment"
         tools:layout="@layout/fragment_place">
         <argument
+            android:name="placeId"
+            app:argType="string"/>
+        <!--<argument
             android:name="selectedPlace"
-            app:argType="com.rosalynbm.wannago2.model.Place"/>
+            app:argType="com.rosalynbm.wannago2.model.Place"/>-->
     </fragment>
 </navigation>

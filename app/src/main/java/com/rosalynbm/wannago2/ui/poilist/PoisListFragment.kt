@@ -10,11 +10,12 @@ import com.rosalynbm.wannago2.R
 import com.rosalynbm.wannago2.base.BaseFragment
 import com.rosalynbm.wannago2.base.NavigationCommand
 import com.rosalynbm.wannago2.databinding.FragmentPoisListBinding
-import com.rosalynbm.wannago2.model.Place
 import com.rosalynbm.wannago2.ui.HolderActivity
 import com.rosalynbm.wannago2.ui.login.LoginViewModel
 import com.rosalynbm.wannago2.util.Variables
 import com.rosalynbm.wannago2.util.setup
+import kotlinx.android.synthetic.main.item_poi.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -71,9 +72,9 @@ class PoisListFragment : BaseFragment() {
                     PoisListFragmentDirections.toMapsFragment()))
     }
 
-    private fun navigateToPlaceFragment(place: Place) {
+    private fun navigateToPlaceFragment(placeId: String) {
         // Use the navigationCommand live data to navigate between the fragments
-        val action = PoisListFragmentDirections.toPlaceFragment(place)
+        val action = PoisListFragmentDirections.toPlaceFragment(placeId)
         _viewModel.navigationCommand.postValue(
                 NavigationCommand.To(action))
     }
@@ -91,12 +92,12 @@ class PoisListFragment : BaseFragment() {
         if (Variables.isNetworkConnected) {
             lifecycleScope.launch {
                 Timber.d("Poi selected: $placeId")
-                val place = _viewModel.getPlaceDetails(placeId)
-                place?.let { navigateToPlaceFragment(it) }
+                navigateToPlaceFragment(placeId)
             }
         } else
             _viewModel.showSnackBar.value = getString(R.string.no_internet_connection)
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -111,7 +112,6 @@ class PoisListFragment : BaseFragment() {
             }
         }
         return super.onOptionsItemSelected(item)
-
     }
 
     private fun navigateLogin() {

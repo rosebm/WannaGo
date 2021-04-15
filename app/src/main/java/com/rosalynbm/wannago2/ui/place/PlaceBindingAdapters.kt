@@ -9,8 +9,8 @@ import coil.size.Scale
 import com.rosalynbm.wannago2.R
 
 @BindingAdapter("image")
-fun bindImageViewToName(imageview: ImageView, photoUrl: String) {
-    imageview.load(photoUrl) {
+fun bindImageViewToName(imageView: ImageView, photoUrl: String) {
+    imageView.load(photoUrl) {
         placeholder(R.drawable.ic_placeholder)
         //transformations(RoundedCornersTransformation())
         scale(Scale.FILL)
@@ -37,3 +37,7 @@ fun bindTextViewToType(textView: TextView, type: String) {
     textView.text = String.format(type)
 }
 
+@BindingAdapter("placeAddressText")
+fun bindTextViewToAddress(textView: TextView, address: String) {
+    textView.text = String.format(address)
+}

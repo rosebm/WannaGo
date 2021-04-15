@@ -4,14 +4,12 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.rosalynbm.wannago2.base.BaseViewModel
-import com.rosalynbm.wannago2.data.entity.PoiEntity
 import com.rosalynbm.wannago2.data.Result
-import com.rosalynbm.wannago2.model.Place
+import com.rosalynbm.wannago2.data.entity.PoiEntity
 import com.rosalynbm.wannago2.model.PoiItem
 import com.rosalynbm.wannago2.model.Review
 import com.rosalynbm.wannago2.repository.PlacesRepository
 import com.rosalynbm.wannago2.repository.PoiRepository
-import com.rosalynbm.wannago2.util.Constants
 import kotlinx.coroutines.launch
 
 class PoisListViewModel(application: Application,
@@ -63,20 +61,6 @@ class PoisListViewModel(application: Application,
      */
     private fun invalidateShowNoData() {
         showNoData.value = poisList.value == null || poisList.value!!.isEmpty()
-    }
-
-    suspend fun getPlaceDetails(placeId: String): Place? {
-        return placesRepository.getPlace(placeId)
-    }
-
-    fun getPhotoUrl(placeRef: String): String {
-        return Constants.BASE_URL + "photo?maxwidth=1800&photoreference="+
-                placeRef + "&key=" + Constants.API_KEY
-    }
-
-    fun loadReviews(list: List<Review>) {
-        reviewsList.postValue(list)
-        invalidateShowNoData()
     }
 
 }

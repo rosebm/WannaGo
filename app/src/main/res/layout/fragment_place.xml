@@ -13,10 +13,17 @@
 
         <variable
             name="viewModel"
-            type="com.rosalynbm.wannago2.ui.poilist.PoisListViewModel" />
+            type="com.rosalynbm.wannago2.ui.place.PlaceViewModel" />
     </data>
 
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/placeDetailsMotionLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layoutDescription="@xml/fragment_place_scene">
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/placeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingStart="10dp"
@@ -30,6 +37,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/placeGuideline"/>
+
+       <!-- <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerMain"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/placeGuideline"/>-->
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/placeGuideline"
@@ -53,7 +69,7 @@
             android:id="@+id/placeRatingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@(place.rating}"
+            android:text="@{place.rating.toString()}"
             android:textSize="@dimen/text_size_medium"
             android:layout_marginEnd="5dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,13 +102,24 @@
             tools:text="Peruvian Restaurant"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/placeAddressText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{place.formatted_address}"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeTypeText"
+            tools:text="105 NE 3rd Ave, Miami, FL 33132, USA"/>
+
+       <!-- <com.google.android.material.textview.MaterialTextView
             android:id="@+id/placeReviewsLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/reviews"
+            android:visibility="gone"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/placeTypeText"/>
+            app:layout_constraintTop_toBottomOf="@+id/placeAddressText"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/placeReviewsRecyclerview"
@@ -100,11 +127,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:liveData="@{viewModel.reviewsList}"
-            android:scrollbars="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/placeReviewsLabel"/>
+            app:layout_constraintTop_toBottomOf="@+id/placeReviewsLabel"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 
 </layout>
